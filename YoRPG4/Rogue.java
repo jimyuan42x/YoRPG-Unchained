@@ -25,13 +25,11 @@ public abstract class Rogue extends Character{
 	return name;
     }
 
-    /*==
     public boolean isAlive() {
 	return (HP > 0);
     }
 
     public int getDefense() {
-        int def = defense;
 	return def;
     }
 
@@ -40,7 +38,7 @@ public abstract class Rogue extends Character{
     }
 
     public int attack(Monster x) {
-	int damage = (int)((strength * rate) - x.getDefense());
+	int damage = (int)((str * rate) - x.getDefense());
 	x.lowerHP(damage);
 	return damage;
     }
@@ -60,8 +58,8 @@ public abstract class Rogue extends Character{
 	atkboost = 0;
 	defdrop = 0;
     }
-    ==*/
-    public String about() { //Ignore this
+    
+    public String about() {
 	String rtnstn = "Type: Rogue/n";
 	rtnstn += "Name: " + name + "/n";
 	rtnstn += "Strength: " + Integer.toString(str) + "/n";
