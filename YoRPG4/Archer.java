@@ -20,28 +20,6 @@ public class Archer extends Character {
 	name = user;
     }
 
-    public String getName() {
-	return name;
-    }
-
-    public boolean isAlive() {
-	return (HP > 0);
-    }
-
-    public int getDefense() {
-	return def;
-    }
-
-    public void lowerHP(int loss) {
-	HP -= loss;
-    }
-
-    public int attack(Monster x) {
-	int damage = (int)((str * rate) - x.getDefense());
-	x.lowerHP(damage);
-	return damage;
-    }
-
     public void specialize() {
 	str -= atkboost;
 	def += defdrop;
