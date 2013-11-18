@@ -1,65 +1,75 @@
-//Jim Yuan
-//pd 8
-//HW24
-//2013-11-13
-//Update:
-//HW25
-//2013-11-14
+import java.util.Arrays;
+
 public abstract class Character {
 
-    //variables
-    protected String _name;
-    protected int _hp, _str, _def;
-    protected double _att;
+    protected String name;
+    protected int HP;
+    protected int str;
+    protected int def;
+    protected int intel;
+    protected int con;
+    protected int spd;
+    protected int dex;
+    protected int lck;
+    protected int MP;
+    protected String[] skills;
+    protected int level;
+    protected int[] stats;
 
+    protected Character() {
 
-    public Character(){//def constructor
-	_hp = 200;
-	_def = 75;
-	_att = 80;
+	HP = 0;
+	MP = 0;
+	str = 0;
+	def = 0;
+	intel = 0;
+	con = 0;
+	spd = 0;
+	dex = 0;
+	skills = new String[3];
+	level = 1;
+
     }
 
-    //methods
+
     protected String getName(){
-	return _name;
+	return name;
     }
-    protected boolean isAlive(){
-	return (_hp > 0);
-    }
-
-    protected int getDefense(){//accessor for def
-	return _def;
+    protected boolean isAlive() {
+	return HP > 0;
     }
 
-    protected int lowerHP(int dec){
-	_hp = _hp - dec;
-	return _hp;
+    protected int getDefense() {
+        int defense = def;
+	return defense;
     }
 
-
-    protected int attack(Character opponent){
-	double dmg = ((_str * _att) - opponent.getDefense());
-	if (dmg < 0){
-	    dmg = 0;
-	}
-	return (int)dmg;
+    protected void lowerHP(int loss) {
+	HP -= loss;
     }
 
-    protected abstract void specialize();/*{
-	_def = 0;
-	_att = 49;
-	}*/
+    protected int attack(Character x) {
 
-    protected abstract void normalize();/*{
-	_def = 15;
-	_att = 7;
-	}*/
+	int damage = (int)((str) - x.getDefense());
+	x.lowerHP(damage);
+	return damage;
+
+    }
+
+    protected boolean isTopStat(int x) {
+        int[] stats = {str,def,intel,con,spd,dex,lck};
+	Arrays.sort(stats);
+	return (x == stats[stats.length - 1]); // this might be wrong, test pls.
+    }	
+
+    protected abstract void levelup();
+
+    protected abstract void addskill();
+
+    protected abstract void normalize();
+
+    protected abstract void specialize();
 
     protected abstract String about();
-
-
-    
-
-    
 
 }
