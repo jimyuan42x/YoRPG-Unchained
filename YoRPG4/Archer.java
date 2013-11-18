@@ -15,7 +15,7 @@ public class Archer extends Character {
 	skills[0] = "Shoot Stuff";
     }
     
-    public Rogue(String user){
+    public Archer(String user){
 	this();
 	name = user;
     }
