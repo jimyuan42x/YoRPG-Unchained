@@ -20,29 +20,6 @@ public class Warrior extends Character {
 	name = user;
     }
 
-    public String getName() {
-	return name;
-    }
-
-    public boolean isAlive() {
-	return (HP > 0);
-    }
-
-    public int getDefense() {
-        int def = defense;
-	return def;
-    }
-
-    public void lowerHP(int loss) {
-	HP -= loss;
-    }
-
-    public int attack(Monster x) {
-	int damage = (int)((strength * rate) - x.getDefense());
-	x.lowerHP(damage);
-	return damage;
-    }
-
     public void specialize() {
 	str -= atkboost;
 	def += defdrop;
