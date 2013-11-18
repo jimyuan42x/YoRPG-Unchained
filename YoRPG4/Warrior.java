@@ -92,7 +92,18 @@ public class Warrior extends Character {
 
 	}
     }	
+  public void addskill2() {
+            
+        skills[2] = "Dual Strike";
+        if (isTopStat(con)) {        
+            skills[2] = "Synchro Mode";
+        }
+        if (isTopStat(def)) {
+            skills[2] = "Guarded Strike";
+        }
+    }        
 
+}
 }
 	
   
