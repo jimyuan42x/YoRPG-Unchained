@@ -1,72 +1,98 @@
-//Jim Yuan
-//pd 8
-//HW23
-//2013-11-12
-//Update:
-//HW24
-//2013-11-13
-//Update:
-//HW25
-//2013-11-14
-public class Warrior extends Character{
-    //attributes
-    /* private String _name = "";
-    private int _hp, _str, _def;
-    private double _att;
-    */
-    //le default
-    public Warrior(String name){
+public class Warrior extends Character {
+    
+    private String name;
+    private int atkboost;
+    private int defdrop;
+
+    public Warrior() {
 	super();
-	_name = name;
-	//	_hp = 250;
-	_str = 20;
-	//	_def = 15;
-	//_att = 7.0;
+	name = "Trondomere";
+	HP = (int)(Math.random() * 60) + 90;
+	str= (int)(Math.random() * 30) + 20;
+	def = (int)(Math.random() * 30) + 20;
+	atkboost = 0;
+	defdrop = 0;
+	skills[0] = "Smack Stuff";
     }
     
-    public boolean isAlive(){
-	//	return (_hp > 0);
-	return super.isAlive();
-    }
-    //le accessors
-    public int getDefense(){
-	//	return _def;
-	return super.getDefense();
+    public Warrior(String user){
+	this();
+	name = user;
     }
 
-    public String getName(){
-	return super.getName();
-	//	return _name;
-    }
-    //assuming dec will be positive, like a damage value
-    public int lowerHP(int dec){
-	//	_hp = _hp -= dec;
-	//return _hp;
-	return super.lowerHP(dec);
+    public String getName() {
+	return name;
     }
 
-    public int attack(Monster baddie){
-	/*	double dmg = (_str * _att) - baddie.getDefense();
-	if (dmg < 0){
-	    dmg = 0;
-	}
-	return (int)dmg;*/
-	return super.attack(baddie);
+    public boolean isAlive() {
+	return (HP > 0);
     }
-    //prepare for trouble!
-    public void specialize(){
-	_def = 0;
-	_att = 49;//why not make it double?
+
+    public int getDefense() {
+        int def = defense;
+	return def;
+    }
+
+    public void lowerHP(int loss) {
+	HP -= loss;
+    }
+
+    public int attack(Monster x) {
+	int damage = (int)((strength * rate) - x.getDefense());
+	x.lowerHP(damage);
+	return damage;
+    }
+
+    public void specialize() {
+	str -= atkboost;
+	def += defdrop;
+	atkboost = (int)(Math.random() * 20);
+	defdrop = (int)(Math.random() * 20);
+	str += atkboost;
+	def -= defdrop;
+    }
+
+    public void normalize() {
+	str -= atkboost;
+	def += defdrop;
+	atkboost = 0;
+	defdrop = 0;
+    }
+ 
+    public String about() { 
+	String rtnstn = "Type: Warrior/n";
+	rtnstn += "Name: " + name + "/n";
+	rtnstn += "Strength: " + Integer.toString(str) + "/n";
+	rtnstn += "Defense: " + Integer.toString(def) + "/n";
+	return rtnstn;
+
+    }
+
+    public void levelup() {
+	level += 1;
+	HP += 50 + (int)(Math.random()*10);
+	str += 2 + (int)((Math.random()*4)*1.2);
+	def += 2 + (int)(Math.random()*4);
+	intel += 2 + (int)(Math.random()*4);
+	con += 2 + (int)(Math.random()*4);
 	
     }
-    public void normalize(){//blasted off again. :[
-	_def = 15;
-	_att = 7;
+    
+    public void addskill() { 
 
-    }
+	skills[1] = "More Smacking";
+	if (isTopStat(str)) {
 
-    public String about(){
+	    skills[1] = "Smack Again";
 
-	return "The Warrior:\nThe Warrior is a fearless fighter who boasts high physical strength and stamina. Though occasionally reckless, the Warrior fights nobly, and can sustain a great deal of damage, and retaliates with an even greater force.";
-    }
+	}
+	if (isTopStat(dex)) {
+
+	    skills[1] = "Smack Stuff";
+
+	}
+    }	
+
 }
+	
+  
