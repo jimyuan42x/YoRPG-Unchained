@@ -1,12 +1,3 @@
-//Jim Yuan
-//pd 8
-//HW23
-//2013-11-12
-//Update:
-//HW24
-//2013-11-12
-
-
 
 /*=============================================
   class YoRPG -- Driver file for Ye Olde Role Playing Game.
