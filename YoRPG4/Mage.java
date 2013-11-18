@@ -1,54 +1,95 @@
-//Jim Yuan
-//pd 8
-//HW25
-//2013-11-14
+public class Mage extends Character{
 
-public  class Mage extends Character{
+    private String name;
+    private int atkboost;
+    private int defdrop;
 
-    public Mage(String name){
+    public Mage() {
 	super();
-	_name = name;
-	_str = 20;
+	name = "Statue of karthus";
+	HP = (int)(Math.random() * 60) + 90;
+	str= (int)(Math.random() * 30) + 20;
+	def = (int)(Math.random() * 30) + 20;
+	atkboost = 0;
+	defdrop = 0;
+	skills[0] = "Magicccccccc";
+    }
+    
+    public Mage(String user){
+	this();
+	name = user;
     }
 
-    public boolean isAlive(){
-	return super.isAlive();
+    public String getName() {
+	return name;
     }
 
-    public int getDefense(){
-	return super.getDefense();
+    public boolean isAlive() {
+	return (HP > 0);
     }
 
-    public String getName(){
-	return super.getName();
+    public int getDefense() {
+        int def = defense;
+	return def;
     }
 
-    public int lowerHP(int dec){
-	return super.lowerHP(dec);
+    public void lowerHP(int loss) {
+	HP -= loss;
     }
 
-    public int attack(Monster opponent){
-
-	return super.attack(opponent);
+    public int attack(Monster x) {
+	int damage = (int)((strength * rate) - x.getDefense());
+	x.lowerHP(damage);
+	return damage;
     }
 
-    public  void specialize(){
-	_def = 0;
-	_att = 49;
+    public void specialize() {
+	str -= atkboost;
+	def += defdrop;
+	atkboost = (int)(Math.random() * 20);
+	defdrop = (int)(Math.random() * 20);
+	str += atkboost;
+	def -= defdrop;
+    }
+
+    public void normalize() {
+	str -= atkboost;
+	def += defdrop;
+	atkboost = 0;
+	defdrop = 0;
+    }
+ 
+    public String about() { 
+	String rtnstn = "Type: Magic/n";
+	rtnstn += "Name: " + name + "/n";
+	rtnstn += "Strength: " + Integer.toString(str) + "/n";
+	rtnstn += "Defense: " + Integer.toString(def) + "/n";
+	return rtnstn;
 
     }
 
-    public  void normalize(){
-	_def = 15;
-	_att = 7;
-
+    public void levelup() {
+	level += 1;
+	HP += 50 + (int)(Math.random()*10);
+	str += 2 + (int)((Math.random()*4)*1.2);
+	def += 2 + (int)(Math.random()*4);
+	intel += 2 + (int)(Math.random()*4);
+	con += 2 + (int)(Math.random()*4);
+	
     }
+    
+    public void addskill() { 
 
-    public String about(){
-	return	"The Mage:\nThe Mage is a member of an underground cult that kills its members to give them new life as wielders of magic. The Mage substitutes its low stamina with high intelligence, fighting from spots fairly distanced from the enemy, hitting it with powerful magical bursts.";
-    }
+	skills[1] = "More Magic";
+	if (isTopStat(str)) {
 
+	    skills[1] = "Magic Again";
 
+	}
+	if (isTopStat(dex)) {
 
+	    skills[1] = "Magic Stuff";
 
+	}
+    }	
 }
