@@ -29,7 +29,6 @@ public class Mage extends Character{
     }
 
     public int getDefense() {
-        int def = defense;
 	return def;
     }
 
@@ -38,7 +37,7 @@ public class Mage extends Character{
     }
 
     public int attack(Monster x) {
-	int damage = (int)((strength * rate) - x.getDefense());
+	int damage = (int)((str * rate) - x.getDefense());
 	x.lowerHP(damage);
 	return damage;
     }
