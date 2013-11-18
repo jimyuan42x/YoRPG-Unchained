@@ -12,6 +12,7 @@ public abstract class Character {
     protected int dex;
     protected int lck;
     protected int MP;
+    protected double rate;
     protected String[] skills;
     protected int level;
     protected int[] stats;
@@ -26,6 +27,7 @@ public abstract class Character {
 	con = 0;
 	spd = 0;
 	dex = 0;
+	rate = 0;
 	skills = new String[3];
 	level = 1;
 
@@ -40,7 +42,6 @@ public abstract class Character {
     }
 
     protected int getDefense() {
-        int defense = def;
 	return defense;
     }
 
